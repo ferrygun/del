@@ -194,22 +194,11 @@
 
         function fetchData(dateStr) {
             var url = 'https://xyz.api.here.com/hub/spaces/' + spaceID + '/search?limit=100&access_token=' + accessToken;
-            //d3.json(url).then(function(data) {
-			//	console.log(data);
-                //theData = data;
-                //renderCircles();
-            //});
-
-			var xhttp = new XMLHttpRequest();
-			xhttp.onreadystatechange = function() {
-				if (this.readyState == 4 && this.status == 200) {
-				  theData = JSON.parse(this.responseText);
-				  console.log(theData);
-                   renderCircles();
-				}
-			  };
-			  xhttp.open("GET", url, true);
-			  xhttp.send();
+            d3.json(url).then(function(data) {
+		console.log(data);
+                theData = data;
+                renderCircles();
+            });
         }
 
         fetchData(initDate);
